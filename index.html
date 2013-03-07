@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=320; user-scalable=no" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Minimal AppLaud App</title>
+
+    <script type="text/javascript" charset="utf-8" src="phonegap-1.4.1.js"></script>
+	  <script type="text/javascript" charset="utf-8">
+        
+       var myMedia = null;
+       var playing = false;
+       
+	   function playAudio() {
+  			if (!playing) {
+    			myMedia.play(); 
+    			document.getElementById('play').src = "/android_asset/images/pause.png";
+    			playing = true;
+  			} else {
+    			myMedia.pause();
+    			document.getElementById('play').src = "/android_asset/images/play.png"; 
+    			playing = false;
+  			}
+		}
+
+		function stopAudio() {
+  			myMedia.stop();
+  			document.getElementById('play').src = "/android_asset/images/play.png"; 
+  			playing = false;
+		}
+
+        var onDeviceReady = function() {                       
+           myMedia = new Media("http://lyssna.osteraker.se/live-320");
+        };
+
+        function init() {
+            document.addEventListener("deviceready", onDeviceReady, false);   
+        }
+        
+</script>  
+
+  </head>
+  <body onload="init();" id="stage" class="theme">
+	<div align="center">
+	<h3><i>Du lyssnar pÃ¥...</i></h3>	 
+	<br>
+	<h2>Radio Ã–sterÃ¥ker 103,7 MHz </h2>
+    <h3>Roslagens Bredaste Radio </h3>
+    <br>
+    <a href="#" onclick="playAudio()"><img id="play" src="/android_asset/images/play.png"></a>
+   	<a href="#" onclick="stopAudio()"><img id="stop" src="/android_asset/images/stop.png"></a>
+    
+	</div>
+
+  </body>
+</html>
